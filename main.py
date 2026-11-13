@@ -8,6 +8,7 @@ from html_validator import confirm_html
 from time_validator import confirm_time
 
 def email_in_file(file):
+    # Check for valid emails in file
     email_list = []
     for line in file:
         for word in line.split():
@@ -18,6 +19,7 @@ def email_in_file(file):
     return email_list
 
 def phone_numbers_in_file(file):
+    # Check for valid phone numbers in file
     phone_list = []
     for line in file:
         words = line.split()
@@ -31,6 +33,7 @@ def phone_numbers_in_file(file):
     return phone_list
 
 def credit_cards_in_file(file):
+    # Check for valid credit card numbers in file
     credit_card_list = []
     for line in file:
         words = line.split()
@@ -45,6 +48,7 @@ def credit_cards_in_file(file):
     return credit_card_list
 
 def currency_amounts_in_file(file):
+    # Check for valid currency amounts in file
     currency_list = []
     for line in file:
         for word in line.split():
@@ -55,6 +59,7 @@ def currency_amounts_in_file(file):
     return currency_list
 
 def hashtags_in_file(file):
+    # Check for valid hashtags in file
     hashtag_list = []
     for line in file:
         for word in line.split():
@@ -65,6 +70,7 @@ def hashtags_in_file(file):
     return hashtag_list
 
 def html_in_file(file):
+    # Check for valid HTML tags in file
     html_list =[]
     for line in file:
         words = line.split()
@@ -78,6 +84,7 @@ def html_in_file(file):
     return html_list
 
 def time_in_file(file):
+    # Check for valid time formats in file
     time_list = []
     for line in file:
         words = line.split()
@@ -93,6 +100,7 @@ def time_in_file(file):
 
 if __name__ == "__main__":
     with open(input("Enter the file name: "), "r") as file:
+        # Read the file and extract valid data
         email_list = email_in_file(file)
         file.seek(0)
         phone_list = phone_numbers_in_file(file)
@@ -107,23 +115,30 @@ if __name__ == "__main__":
         file.seek(0)
         time_list = time_in_file(file)
     with open("valid_emails.txt", "w") as output_file:
+        # Write valid emails to output file
         for email in email_list:
             output_file.write(email + "\n")
     with open("valid_phone_numbers.txt", "w") as output_file:
+        # Write valid phone numbers to output file
         for phone in phone_list:
             output_file.write(phone + "\n")
     with open("valid_credit_cards.txt", "w") as output_file:
+        # Write valid credit card numbers to output file
         for credit_card in credit_card_list:
             output_file.write(credit_card + "\n")
     with open("valid_currency_amounts.txt", "w") as output_file:
+        # Write valid currency amounts to output file
         for currency in currency_list:
             output_file.write(currency + "\n")
     with open("valid_hashtags.txt", "w") as output_file:
+        # Write valid hashtags to output file
         for hashtag in hashtag_list:
             output_file.write(hashtag + "\n")
     with open("valid_html.txt", "w") as output_file:
+        # Write valid HTML tags to output file
         for html in html_list:
             output_file.write(html + "\n")
     with open("valid_time.txt", "w") as output_file:
+        # Write valid time formats to output file
         for times in time_list:
             output_file.write(times + "\n")
