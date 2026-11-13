@@ -20,21 +20,28 @@ def email_in_file(file):
 def phone_numbers_in_file(file):
     phone_list = []
     for line in file:
-        for word in line.split():
-            word = word.strip(".,!?;:()[]{}<>")
-            confirm = confirm_phone_number(word)
-            if confirm == True:
-                phone_list.append(word)
+        words = line.split()
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                word = " ".join(words[i:j])
+                word = word.strip(".,!?;:[]{}<>")
+                if confirm_phone_number(word) == True:
+                    if word not in phone_list:
+                        phone_list.append(word)
     return phone_list
 
 def credit_cards_in_file(file):
     credit_card_list = []
     for line in file:
-        for word in line.split():
-            word = word.strip(".,!?;:()[]{}<>")
-            confirm = confirm_credit_card_number(word)
-            if confirm == True:
-                credit_card_list.append(word)
+        words = line.split()
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                word = " ".join(words[i:j])
+                word = word.strip(".,!?;:()[]{}<>")
+                confirm = confirm_credit_card_number(word)
+                if confirm == True:
+                    if word not in credit_card_list:
+                        credit_card_list.append(word)
     return credit_card_list
 
 def currency_amounts_in_file(file):
@@ -60,31 +67,44 @@ def hashtags_in_file(file):
 def html_in_file(file):
     html_list =[]
     for line in file:
-        for word in line.split():
-            word = word.strip(".,!?;:()[]{}<>")
-            confirm = confirm_html(word)
-            if confirm == True:
-                html_list.append(word)
+        words = line.split()
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                word = " ".join(words[i:j])
+                confirm = confirm_html(word)
+                if confirm == True:
+                    if word not in html_list:
+                        html_list.append(word)
     return html_list
 
 def time_in_file(file):
     time_list = []
     for line in file:
-        for word in line.split():
-            word = word.strip(".,!?;:()[]{}<>")
-            confirm = confirm_time(word)
-            if confirm == True:
-                time_list.append(word)
+        words = line.split()
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                word = " ".join(words[i:j])
+                word = word.strip(".,!?;:()[]{}<>")
+                confirm = confirm_time(word)
+                if confirm == True:
+                    if word not in time_list:
+                        time_list.append(word)
     return time_list
 
 if __name__ == "__main__":
     with open(input("Enter the file name: "), "r") as file:
         email_list = email_in_file(file)
+        file.seek(0)
         phone_list = phone_numbers_in_file(file)
+        file.seek(0)
         credit_card_list = credit_cards_in_file(file)
+        file.seek(0)
         hashtag_list = hashtags_in_file(file)
+        file.seek(0)
         currency_list = currency_amounts_in_file(file)
+        file.seek(0)
         html_list = html_in_file(file)
+        file.seek(0)
         time_list = time_in_file(file)
     with open("valid_emails.txt", "w") as output_file:
         for email in email_list:
